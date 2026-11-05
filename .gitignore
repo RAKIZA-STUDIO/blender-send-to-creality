@@ -9,3 +9,5 @@ __pycache__/
 *.stl
 *.3mf
 assets/
+
+brand/
