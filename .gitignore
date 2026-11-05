@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.zip
+
+# 3D project files are not part of this repository
+*.blend
+*.blend1
+*.blend2
+*.stl
+*.3mf
+assets/
