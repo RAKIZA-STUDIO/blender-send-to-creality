@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/banner.png" alt="Send to Creality: one button from Blender to Creality Print" width="100%">
+
 # Send to Creality
 
 **Send a model from Blender to Creality Print with one button.**
@@ -12,8 +14,22 @@ The add-on merges your parts into one printable solid, sets the height, checks t
 ![Version 1.1.0](https://img.shields.io/badge/Version-1.1.0-6A1B9A)
 ![License GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue)
 
-[Install](#install) · [How to use it](#how-to-use-it) · [How it works](#how-it-works) · [Troubleshooting](#troubleshooting)
+[Demo](#demo) · [Install](#install) · [How to use it](#how-to-use-it) · [How it works](#how-it-works) · [Troubleshooting](#troubleshooting)
 
+</div>
+
+---
+
+## Demo
+
+Installing the add-on, then sending a model to Creality Print:
+
+<div align="center">
+<a href="https://github.com/HARDOX-design/blender-send-to-creality/releases/download/v1.1.0/send_to_creality_demo.mp4">
+<img src="docs/demo.gif" alt="Installing the add-on in Blender and sending a toy rocket to Creality Print" width="100%">
+</a>
+
+[Download the full video (MP4, 58 seconds)](https://github.com/HARDOX-design/blender-send-to-creality/releases/download/v1.1.0/send_to_creality_demo.mp4)
 </div>
 
 ---
@@ -45,20 +61,9 @@ Going from Blender to a slicer usually means merging parts, fixing the scale, ex
 
 Press `N` in the 3D viewport and open the **Print** tab:
 
-```text
-┌ Send to Creality ───────────────────┐
-│ Height          [ 100.0           ] │
-│                 52.4 x 50.7 x 100 mm│
-│ File name       [                 ] │
-│ Folder          [ ...Blender Prints ]│
-│                 [ ] Selected only   │
-│ Send to         [ Open project  ▾ ] │
-│ Project         [ My trophy     ▾ ] │
-│                                     │
-│ [        Send to Creality         ] │
-│ Added to My trophy                  │
-└─────────────────────────────────────┘
-```
+<div align="center">
+<img src="docs/panel.png" alt="The Send to Creality panel in Blender's sidebar" width="420">
+</div>
 
 1. Set the **Height**.
 2. Type a **File name**, or leave it empty to use the Blender file's name.
