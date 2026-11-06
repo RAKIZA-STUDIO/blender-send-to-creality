@@ -1,7 +1,7 @@
 schema_version = "1.0.0"
 
 id = "send_to_creality"
-version = "1.1.0"
+version = "1.1.1"
 name = "Send to Creality"
 tagline = "Merge, size and send a model to Creality Print"
 maintainer = "RAKIZA-STUDIO"

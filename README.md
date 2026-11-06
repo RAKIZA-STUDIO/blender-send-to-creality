@@ -11,7 +11,7 @@ The add-on merges your parts into one printable solid, sets the height, checks t
 ![Blender 4.5+](https://img.shields.io/badge/Blender-4.5%2B-E87D0D?logo=blender&logoColor=white)
 ![Creality Print 7](https://img.shields.io/badge/Creality%20Print-7-2E7D32)
 ![Windows](https://img.shields.io/badge/Platform-Windows-0078D6)
-![Version 1.1.0](https://img.shields.io/badge/Version-1.1.0-6A1B9A)
+![Version 1.1.1](https://img.shields.io/badge/Version-1.1.1-6A1B9A)
 ![License GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue)
 
 [Demo](#demo) · [Install](#install) · [How to use it](#how-to-use-it) · [How it works](#how-it-works) · [Troubleshooting](#troubleshooting)
@@ -52,7 +52,7 @@ Going from Blender to a slicer usually means merging parts, fixing the scale, ex
 
 ## Install
 
-1. Download `send_to_creality-1.1.0.zip` from the [latest release](../../releases/latest). Don't unzip it.
+1. Download `send_to_creality-1.1.1.zip` from the [latest release](../../releases/latest). Don't unzip it.
 2. In Blender, go to **Edit > Preferences > Add-ons**.
 3. Click the down arrow at the top right and choose **Install from Disk**.
 4. Select the zip file and make sure **Send to Creality** is ticked.
@@ -122,7 +122,7 @@ To use a custom install location, set the program path in the add-on's preferenc
 ## Building the zip
 
 ```bash
-cd send_to_creality && zip ../send_to_creality-1.1.0.zip __init__.py blender_manifest.toml
+cd send_to_creality && zip ../send_to_creality-1.1.1.zip __init__.py single_instance.py blender_manifest.toml
 ```
 
 ## License

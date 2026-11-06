@@ -12,11 +12,15 @@ import glob
 import os
 import re
 import subprocess
+import sys
 import time
 
 import bmesh
 import bpy
 from mathutils import Matrix, Vector
+
+from . import single_instance
+from .single_instance import set_single_instance
 
 SOLID_TYPES = {"MESH", "CURVE", "FONT", "SURFACE", "META"}
 WM_COPYDATA = 0x004A
@@ -108,38 +112,40 @@ def _creality_config():
     return max(configs, key=os.path.getmtime) if configs else ""
 
 
-def _set_single_instance(path, value):
-    with open(path, encoding="utf-8", newline="") as config:
-        text = config.read()
-    updated = re.sub(r'("single_instance"\s*:\s*)(true|false)', rf"\g<1>{value}", text)
-    if updated != text:
-        with open(path, "w", encoding="utf-8", newline="") as config:
-            config.write(updated)
-
-
 def open_new_window(exe, filepath):
-    """Open a file in its own window.
+    """Open a file in its own window and return whether one appeared.
 
     With Creality's single instance option on, a new launch would hand the
     file to an open window, so the option is off only while this one starts.
+    That window saves the option as off when it closes, so a small watcher
+    outside Blender turns it back on afterwards.
     """
     path = _creality_config()
     single = False
     if path:
         with open(path, encoding="utf-8") as config:
             single = re.search(r'"single_instance"\s*:\s*true', config.read()) is not None
-    if not single or not creality_windows():
-        subprocess.Popen([exe, filepath], close_fds=True)
-        return
     before = set(creality_windows())
-    _set_single_instance(path, "false")
-    try:
+    if not single or not before:
         subprocess.Popen([exe, filepath], close_fds=True)
+        return True
+    new = set()
+    set_single_instance(path, "false")
+    try:
+        launch = subprocess.Popen([exe, filepath], close_fds=True)
         deadline = time.monotonic() + NEW_WINDOW_TIMEOUT
-        while time.monotonic() < deadline and not set(creality_windows()) - before:
+        while time.monotonic() < deadline and not new:
+            new = set(creality_windows()) - before
             time.sleep(0.25)
     finally:
-        _set_single_instance(path, "true")
+        set_single_instance(path, "true")
+    for pid in new or {launch.pid}:
+        subprocess.Popen(
+            [sys.executable, "-I", single_instance.__file__, str(pid), path],
+            creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NO_WINDOW,
+            close_fds=True,
+        )
+    return bool(new)
 
 
 # Geometry ------------------------------------------------------------------
@@ -490,8 +496,9 @@ class OBJECT_OT_send_to_creality(bpy.types.Operator):
         if not exe:
             return "Saved, path copied. Creality Print was not found"
         if settings.send_mode == "NEW":
-            open_new_window(exe, filepath)
-            return "Opened in a new Creality window"
+            if open_new_window(exe, filepath):
+                return "Opened in a new Creality window"
+            return "Saved, path copied. No new Creality window appeared"
 
         windows = creality_windows()
         if not windows:
