@@ -25,11 +25,11 @@ The add-on merges your parts into one printable solid, sets the height, checks t
 Installing the add-on, then sending a model to Creality Print:
 
 <div align="center">
-<a href="https://github.com/RAKIZA-STUDIO/blender-send-to-creality/releases/download/v1.1.0/send_to_creality_demo.mp4">
+<a href="https://github.com/RAKIZA-STUDIO/blender-send-to-creality/releases/download/v1.1.1/send_to_creality_demo.mp4">
 <img src="docs/demo.gif" alt="Installing the add-on in Blender and sending a toy rocket to Creality Print" width="100%">
 </a>
 
-[Download the full video (MP4, 58 seconds)](https://github.com/RAKIZA-STUDIO/blender-send-to-creality/releases/download/v1.1.0/send_to_creality_demo.mp4)
+[Download the full video (MP4, 58 seconds)](https://github.com/RAKIZA-STUDIO/blender-send-to-creality/releases/download/v1.1.1/send_to_creality_demo.mp4)
 </div>
 
 ---
